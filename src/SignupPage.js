@@ -1,72 +1,19 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./SignupPage.css";
 
-function SignupPage({ updateEnteredDetails }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  const userName = firstName.toLowerCase() + lastName.toLowerCase();
-
-  const handleFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleLastName = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmitForms = (e) => {
-    e.preventDefault();
-
-    if (
-      password.length >= 5 &&
-      password !== email &&
-      password !== firstName + lastName
-    ) {
-      const newUser = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        userName: userName,
-        id: Date.now(),
-      };
-      updateEnteredDetails((prevDetails) => [...prevDetails, newUser]);
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-
-      navigate("/Data");
-    } else {
-      alert("Please check password rules before");
-    }
-  };
-
+function SignupPage() {
   return (
     <div className="signup-pic-and-forms">
       <div className="signup-emoji"></div>
       <div className="form-container" style={{ marginTop: "8em" }}>
         <h2 style={{ textAlign: "center" }}>Create Account</h2>
-        <form onSubmit={handleSubmitForms}>
+        <form>
           <input
             type="text"
             name="first_name"
             className="form-input"
             placeholder="First name"
-            onChange={handleFirstName}
             required
           />
           <input
@@ -74,7 +21,6 @@ function SignupPage({ updateEnteredDetails }) {
             name="last_name"
             className="form-input"
             placeholder="Last name"
-            onChange={handleLastName}
             required
           />
 
@@ -83,7 +29,6 @@ function SignupPage({ updateEnteredDetails }) {
             name="email"
             className="form-input"
             placeholder="Email"
-            onChange={handleEmail}
             required
           />
 
@@ -92,7 +37,6 @@ function SignupPage({ updateEnteredDetails }) {
             name="password"
             className="form-input"
             placeholder="Password"
-            onChange={handlePassword}
             required
           />
           <p style={{ fontSize: "14px", color: "#777777" }}>
