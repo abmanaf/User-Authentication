@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Login from "./components/Login";
-import { db } from "./config/firebase";
+import { auth, db } from "./config/firebase";
 import {
   getDocs,
   collection,
   addDoc,
   deleteDoc,
   doc,
+  updateDoc,
 } from "firebase/firestore";
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
   const [newMovieTitle, setNewMovieTitle] = useState("");
   const [newreleaseDate, setNewReleasedDate] = useState(0);
   const [isNewMovie, setIsnewMovie] = useState(false);
+
+  const [updateMovie, setUpdateMovie] = useState([]);
 
   const moviesCollectionRef = collection(db, "Movies");
   const getMovieList = async () => {
@@ -52,6 +55,10 @@ function App() {
       console.error(err);
     }
   };
+  const handleUpdate = async () => {
+    await updateDoc(auth);
+  };
+  const onHandleUpdate = async () => {};
 
   return (
     <div>
@@ -85,6 +92,8 @@ function App() {
             </h1>
             <p>Data: {movie.releaseDate}</p>
             <button onClick={() => handleDelete(movie.id)}>Delete</button>
+            <input onChange={(e) => handleUpdate(e.target.value)} />
+            <button onClick={() => onHandleUpdate(movie.id)}>Update</button>
           </div>
         ))}
       </div>
