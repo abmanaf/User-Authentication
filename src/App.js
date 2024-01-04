@@ -18,7 +18,7 @@ function App() {
   const [newreleaseDate, setNewReleasedDate] = useState(0);
   const [isNewMovie, setIsnewMovie] = useState(false);
 
-  const [updateMovie, setUpdateMovie] = useState([]);
+  const [updateMovieTitle, setUpdateMovieTitle] = useState([]);
 
   const moviesCollectionRef = collection(db, "Movies");
   const getMovieList = async () => {
@@ -55,7 +55,7 @@ function App() {
       console.error(err);
     }
   };
-  const handleUpdate = async () => {
+  const handleUpdateTitle = async () => {
     await updateDoc(auth);
   };
   const onHandleUpdate = async () => {};
@@ -92,7 +92,7 @@ function App() {
             </h1>
             <p>Data: {movie.releaseDate}</p>
             <button onClick={() => handleDelete(movie.id)}>Delete</button>
-            <input onChange={(e) => handleUpdate(e.target.value)} />
+            <input onChange={(e) => handleUpdateTitle(e.target.value)} />
             <button onClick={() => onHandleUpdate(movie.id)}>Update</button>
           </div>
         ))}
