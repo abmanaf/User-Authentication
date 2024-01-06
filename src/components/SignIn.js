@@ -30,6 +30,7 @@ function SignIn() {
       console.log("user not found");
     }
   };
+  console.log(auth?.currentUser?.email);
 
   const signInWithGoogle = async () => {
     try {

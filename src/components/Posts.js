@@ -10,9 +10,9 @@ import {
   //uploadFile,
 } from "firebase/firestore";
 
-function Posts() {
+function Posts({ movieList, setMovieList }) {
   const [updateMovieTitle, setUpdateMovieTitle] = useState([]);
-  const [movieList, setMovieList] = useState([]);
+  //const [movieList, setMovieList] = useState([]);
 
   const moviesCollectionRef = collection(db, "Movies");
   const getMovieList = async () => {
